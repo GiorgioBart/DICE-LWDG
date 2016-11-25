@@ -1,6 +1,7 @@
 package it.polimi.dice.lwdg.loaddemo;
 
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -26,7 +27,12 @@ public class getRepoPreference extends Dialog{
         super.configureShell(newShell);
         newShell.setText("Please insert URL");
     }
-
+    
+    protected void createButtonsForButtonBar (Composite parent)
+    {
+    createButton (parent, IDialogConstants.OK_ID, "Ok", true) ;
+    }
+ 
     @Override
     protected Control createDialogArea(Composite parent) {
         Composite comp = (Composite) super.createDialogArea(parent);
@@ -34,13 +40,12 @@ public class getRepoPreference extends Dialog{
         GridLayout layout = (GridLayout) comp.getLayout();
         layout.numColumns = 2;
 
+        
         Label modelsLabel = new Label(comp, SWT.RIGHT);
         modelsLabel.setText("URL for models: ");
         modelsField = new Text(comp, SWT.SINGLE | SWT.BORDER);
         modelsField.setText("https://github.com/dice-project/DICER/releases/download/v0.1.0/models.zip");
-        	
-
-        
+        	     
         Label metamodelsLabel = new Label(comp, SWT.RIGHT);
         metamodelsLabel.setText("URL for metamodels: ");
         metamodelsField = new Text(comp, SWT.SINGLE | SWT.BORDER);
@@ -62,14 +67,14 @@ public class getRepoPreference extends Dialog{
         super.okPressed();
     }
 
-    @Override
+ /*   @Override
     protected void cancelPressed()
     {
 //        modelsField.setText("");
 //        metamodelsField.setText("");
         super.cancelPressed();
     }
-
+*/
     public String getModels()
     {
         return modelsString;

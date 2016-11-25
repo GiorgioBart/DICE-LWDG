@@ -191,7 +191,10 @@ public class loadDemoHandler extends AbstractHandler {
 		getRepoPreference dialog = new getRepoPreference(window.getShell());
 	    dialog.open();
 	    
-	    boolean confirm =MessageDialog.openConfirm(window.getShell(),"DICE-LWDG","A sample DICER project will be created");    
+	    boolean confirm =MessageDialog.openConfirm(
+	    		window.getShell(),"DICE-LWDG",
+	    		"A sample DICER project will be created\n"
+	    		+ "This will take a while...");    
 
 		if (confirm){
 			
@@ -205,13 +208,13 @@ public class loadDemoHandler extends AbstractHandler {
 				
 				String models=writeTemp(ismodel);
 				
-				importZip(models,dicerProject);
-				
 				InputStream ismetamodel=getGithub(dicermetamodel);
 				
 				String metamodels=writeTemp(ismetamodel);
 				
 				createProject(dicerProject);
+				
+				importZip(models,dicerProject);
 				
 				importZip(metamodels,dicerProject);
 				
