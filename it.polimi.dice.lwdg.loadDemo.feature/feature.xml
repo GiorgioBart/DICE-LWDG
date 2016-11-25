@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="it.polimi.dice.lwdg.launcher.feature"
-      label="Dicer launcher"
+      id="it.polimi.dice.lwdg.loadDemo.feature"
+      label="DIDE-LWDG Load Demo"
       version="1.0.0.qualifier">
 
    <description url="http://www.example.com/description">
-      This feature add a launch configuration for the DICER-SERVICE
+      This feature add a DICE-LWDG menu to download DDSM models and metamodels
    </description>
 
    <copyright url="http://www.example.com/copyright">
@@ -17,7 +17,7 @@
    </license>
 
    <plugin
-         id="it.polimi.dice.lwdg.launcher"
+         id="it.polimi.dice.lwdg.loadDemo"
          download-size="0"
          install-size="0"
          version="0.0.0"
