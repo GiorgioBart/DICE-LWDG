@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="it.polimi.dice.lwdg.dependencies.feature"
+      label="Dicer dependencies"
+      version="1.0.0.qualifier">
+
+   <description url="http://www.example.com/description">
+      Collection of dependencies for DICER by DICE-LWDG
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <includes
+         id="org.eclipse.gmf"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.gmf.runtime.notation"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.gmf.runtime.notation.sdk"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.gmf.runtime.sdk"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.gmf.runtime.thirdparty"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.emf.ecore"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.emf.ecore.edit"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.emf.ecore.editor"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.emf.ecore.sdo"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.emf.ecore.sdo.edit"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.emf.ecore.sdo.editor"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.emf.ecore.sdo.sdk"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.emf.query.ocl"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.emf.validation.ocl"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.ocl"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.ocl.all"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.ocl.all.sdk"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.ocl.core.sdk"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.ocl.doc"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.ocl.edit"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.ocl.ui"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.ocl.uml"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.ocl.unified.core"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.ocl.unified.ui"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.ocl.examples.classic"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.ocl.examples.unified"
+         version="0.0.0"/>
+
+   <plugin
+         id="net.sourceforge.dynamicgmf.diagram"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
