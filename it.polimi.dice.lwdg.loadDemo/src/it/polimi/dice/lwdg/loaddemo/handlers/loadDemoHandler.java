@@ -56,178 +56,181 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
  *
  */
 
-@SuppressWarnings("deprecation")
+@
+SuppressWarnings("deprecation")
 public class loadDemoHandler extends AbstractHandler {
-	
-	/**
-	 * Create a project in workspace and return a boolean
-	 * @param projectName The name of the project to be created
-	 * @return Boolean
-	 */
-	private Boolean createProject(String projectName)
-	{
-		IProgressMonitor progressMonitor = new NullProgressMonitor();
-		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-		IProject project = root.getProject(projectName);
-		try {
-		project.create(progressMonitor);
-		return true;
-		} catch (CoreException e) {
-		return false;
-		}
-	}
-	
-	/**
-	 * Download content from given URL (repo) 
-	 * @param repo  Where to download Models and Metamodels
-	 * @return This method return an InputStream 
-	 * @throws Exception 
-	 */
-    private InputStream getGithub(String repo) throws Exception{
-    	if(repo != null && !repo.isEmpty()){
-    			@SuppressWarnings({ "resource" })
-    			HttpClient client = new DefaultHttpClient();
-    			HttpGet request = new HttpGet(repo);
-    			HttpResponse response = client.execute(request);
-    			HttpEntity outentity = response.getEntity();
-    			InputStream is = outentity.getContent();
-    			return is;  		
-    	}else{
-    		throw new Exception("Repo not valid");
-    	}
+
+    /**
+     * Create a project in workspace and return a boolean
+     * @param projectName The name of the project to be created
+     * @return Boolean
+     */
+    private Boolean createProject(String projectName) {
+        IProgressMonitor progressMonitor = new NullProgressMonitor();
+        IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+        IProject project = root.getProject(projectName);
+        try {
+            project.create(progressMonitor);
+            return true;
+        } catch (CoreException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Download content from given URL (repo) 
+     * @param repo  Where to download Models and Metamodels
+     * @return This method return an InputStream 
+     * @throws Exception 
+     */
+    private InputStream getGithub(String repo) throws Exception {
+        if (repo != null && !repo.isEmpty()) {@
+            SuppressWarnings({
+                "resource"
+            })
+            HttpClient client = new DefaultHttpClient();
+            HttpGet request = new HttpGet(repo);
+            HttpResponse response = client.execute(request);
+            HttpEntity outentity = response.getEntity();
+            InputStream is = outentity.getContent();
+            return is;
+        } else {
+            throw new Exception("Repo not valid");
+        }
 
     }
-    
+
     /**
      * Write a temp file from InputStream given as parameter
      * @param is The InputStrteam to write to temp file
      * @return absolute path of the temp file
      */
-	private String writeTemp (InputStream is)
-    {
+    private String writeTemp(InputStream is) {
 
-    	try{		
-    		File targetFile = File.createTempFile("models", ".tmp");
-    	    OutputStream outStream = new FileOutputStream(targetFile);
-    	    byte[] buffer = new byte[8 * 1024];
-    	    int bytesRead;
-    	    while ((bytesRead = is.read(buffer)) != -1) {
-    	        outStream.write(buffer, 0, bytesRead);
-    	    }
-    	    IOUtils.closeQuietly(is);
-    	    IOUtils.closeQuietly(outStream);
-    	    return targetFile.getAbsolutePath();
-    	}catch(IOException e){
-    		return null;
-    	}
+        try {
+            File targetFile = File.createTempFile("models", ".tmp");
+            OutputStream outStream = new FileOutputStream(targetFile);
+            byte[] buffer = new byte[8 * 1024];
+            int bytesRead;
+            while ((bytesRead = is.read(buffer)) != -1) {
+                outStream.write(buffer, 0, bytesRead);
+            }
+            IOUtils.closeQuietly(is);
+            IOUtils.closeQuietly(outStream);
+            return targetFile.getAbsolutePath();
+        } catch (IOException e) {
+            return null;
+        }
     }
-	
-	/**
-	 * Registers given ecore file in EcoreResourceFactory
-	 * @param workspaceEcorePath Path of the ecore file relative to the workspace
-	 * @return Boolean
-	 */
-	private Boolean registerEcore(String workspaceEcorePath){
 
-		try{
-		Path path = new Path(workspaceEcorePath);
-	    IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
-	    String osfile = file.getRawLocation().toOSString();
-	    
-	    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("*", new EcoreResourceFactoryImpl());
-    	ResourceSet rs = new ResourceSetImpl();
+    /**
+     * Registers given ecore file in EcoreResourceFactory
+     * @param workspaceEcorePath Path of the ecore file relative to the workspace
+     * @return Boolean
+     */
+    private Boolean registerEcore(String workspaceEcorePath) {
 
-    	final ExtendedMetaData extendedMetaData = new BasicExtendedMetaData(rs.getPackageRegistry());
-    	rs.getLoadOptions().put(XMLResource.OPTION_EXTENDED_META_DATA,extendedMetaData);
-	    	
-    	URI fileURI=URI.createFileURI(osfile);
-    	Resource r = rs.getResource(fileURI, true);
-    	EObject eObject = r.getContents().get(0);
-    	if (eObject instanceof EPackage) {
-	    	    EPackage p = (EPackage)eObject;
-	    	    EPackage.Registry.INSTANCE.put(p.getNsURI(), p);
-    		}
-    	return true;
-		}catch (Exception e){
-			return false;
-		}
-	}
-	
-	/**
-	 * Import a ZIP file in the project.
-	 * @param myfilepath Absolute path of the Zip file to import 
-	 * @param myproject Project name
-	 * @return Boolean
-	 */
-	private Boolean importZip(String myfilepath,String myproject){
-		
-		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-		IProject project = root.getProject(myproject);
-		IProgressMonitor progressMonitor = new NullProgressMonitor();
-		try {
-			project.open(progressMonitor);
-			ZipFile zipFile = new ZipFile(myfilepath);
-			IOverwriteQuery overwriteQuery = new IOverwriteQuery() {
-			    public String queryOverwrite(String file) { return ALL; }
-			};
-			
-			ZipFileStructureProvider structureProvider=	new ZipFileStructureProvider(zipFile);
-			ImportOperation op= new ImportOperation(project.getFullPath(), structureProvider.getRoot(), structureProvider, overwriteQuery);
-			op.run(new NullProgressMonitor());
-			return true;
-			} catch (CoreException | IOException | InvocationTargetException | InterruptedException e) {
-				return false;
-			}
+        try {
+            Path path = new Path(workspaceEcorePath);
+            IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+            String osfile = file.getRawLocation().toOSString();
 
-	}
+            Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("*", new EcoreResourceFactoryImpl());
+            ResourceSet rs = new ResourceSetImpl();
 
-	/**
-	  * {@inheritDoc}
-	  */
-	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
-		
-		getRepoPreference dialog = new getRepoPreference(window.getShell());
-	    dialog.open();
-	    
-	    boolean confirm =MessageDialog.openConfirm(
-	    		window.getShell(),"DICE-LWDG",
-	    		"A sample DICER project will be created\n"
-	    		+ "This will take a while...");    
+            final ExtendedMetaData extendedMetaData = new BasicExtendedMetaData(rs.getPackageRegistry());
+            rs.getLoadOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, extendedMetaData);
 
-		if (confirm){
-			
-			String dicerProject="Dicer_demo_project";
-			String dicerEcore="/Dicer_demo_project/metamodels/ddsm.ecore";
-			String dicermodel=dialog.getModels();
-			String dicermetamodel=dialog.getMetamodels();
-			
-				try{
-				InputStream ismodel=getGithub(dicermodel);
-				
-				String models=writeTemp(ismodel);
-				
-				InputStream ismetamodel=getGithub(dicermetamodel);
-				
-				String metamodels=writeTemp(ismetamodel);
-				
-				createProject(dicerProject);
-				
-				importZip(models,dicerProject);
-				
-				importZip(metamodels,dicerProject);
-				
-				registerEcore(dicerEcore);
-				
-				MessageDialog.openInformation(window.getShell(),"DICE-LWDG","Ready to go!");  
-				} catch (Exception e){
-				
-					String message = e.getMessage() != null ? e.getMessage() : "Ops! Generic error";
-					
-					MessageDialog.openError(window.getShell(),"DICE-LWDG",message);
-					}
-		}
-		return null;
-	}
+            URI fileURI = URI.createFileURI(osfile);
+            Resource r = rs.getResource(fileURI, true);
+            EObject eObject = r.getContents().get(0);
+            if (eObject instanceof EPackage) {
+                EPackage p = (EPackage) eObject;
+                EPackage.Registry.INSTANCE.put(p.getNsURI(), p);
+            }
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * Import a ZIP file in the project.
+     * @param myfilepath Absolute path of the Zip file to import 
+     * @param myproject Project name
+     * @return Boolean
+     */
+    private Boolean importZip(String myfilepath, String myproject) {
+
+        IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+        IProject project = root.getProject(myproject);
+        IProgressMonitor progressMonitor = new NullProgressMonitor();
+        try {
+            project.open(progressMonitor);
+            ZipFile zipFile = new ZipFile(myfilepath);
+            IOverwriteQuery overwriteQuery = new IOverwriteQuery() {
+                public String queryOverwrite(String file) {
+                    return ALL;
+                }
+            };
+
+            ZipFileStructureProvider structureProvider = new ZipFileStructureProvider(zipFile);
+            ImportOperation op = new ImportOperation(project.getFullPath(), structureProvider.getRoot(), structureProvider, overwriteQuery);
+            op.run(new NullProgressMonitor());
+            return true;
+        } catch (CoreException | IOException | InvocationTargetException | InterruptedException e) {
+            return false;
+        }
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @
+    Override
+    public Object execute(ExecutionEvent event) throws ExecutionException {
+        IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
+
+        getRepoPreference dialog = new getRepoPreference(window.getShell());
+        dialog.open();
+
+        boolean confirm = MessageDialog.openConfirm(
+            window.getShell(), "DICE-LWDG",
+            "A sample DICER project will be created\n" + "This will take a while...");
+
+        if (confirm) {
+
+            String dicerProject = "Dicer_demo_project";
+            String dicerEcore = "/Dicer_demo_project/metamodels/ddsm.ecore";
+            String dicermodel = dialog.getModels();
+            String dicermetamodel = dialog.getMetamodels();
+
+            try {
+                InputStream ismodel = getGithub(dicermodel);
+
+                String models = writeTemp(ismodel);
+
+                InputStream ismetamodel = getGithub(dicermetamodel);
+
+                String metamodels = writeTemp(ismetamodel);
+
+                createProject(dicerProject);
+
+                importZip(models, dicerProject);
+
+                importZip(metamodels, dicerProject);
+
+                registerEcore(dicerEcore);
+
+                MessageDialog.openInformation(window.getShell(), "DICE-LWDG", "Ready to go!");
+            } catch (Exception e) {
+
+                String message = e.getMessage() != null ? e.getMessage() : "Ops! Generic error";
+
+                MessageDialog.openError(window.getShell(), "DICE-LWDG", message);
+            }
+        }
+        return null;
+    }
 }
