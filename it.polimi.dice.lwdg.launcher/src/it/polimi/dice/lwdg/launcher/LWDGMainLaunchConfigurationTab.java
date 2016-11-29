@@ -44,18 +44,22 @@ public class LWDGMainLaunchConfigurationTab extends AbstractLaunchConfigurationT
 		
 		Composite comp = new Group(parent, SWT.BORDER);
         setControl(comp);  
-                
+   
+        PreferencesDialog PD=new PreferencesDialog();
+        PD.drawDialog(comp);
+        
         GridLayoutFactory.swtDefaults().numColumns(2).applyTo(comp);
 
         ///////////////////   FOR ENDPOINT SETTINGS   /////////////////////////
        
-        Label label = new Label(comp, SWT.NONE);
+/*        Label label = new Label(comp, SWT.NONE);
         label.setText("dicer-service host:ip");
         GridDataFactory.swtDefaults().applyTo(label);
 
         text = new Text(comp, SWT.BORDER);
         GridDataFactory.fillDefaults().grab(true, false).applyTo(text);
-        
+*/        
+        text=PD.getDicerURL();
         text.addModifyListener(new ModifyListener(){
             public void modifyText(ModifyEvent event2) {
                 updateLaunchConfigurationDialog();
@@ -63,14 +67,18 @@ public class LWDGMainLaunchConfigurationTab extends AbstractLaunchConfigurationT
             	}});
       
       //Input file chose dialog
-      Button inBrowseButton = new Button(comp, SWT.PUSH);
-      inBrowseButton.setText("Select input model file");
+//     Button inBrowseButton = new Button(comp, SWT.PUSH);
+//      inBrowseButton.setText("Select input model file");
 
-      inputFile = new Text(comp, SWT.BORDER);
-      GridDataFactory.fillDefaults().grab(true, false).applyTo(inputFile);
+//      inputFile = new Text(comp, SWT.BORDER);
+//      GridDataFactory.fillDefaults().grab(true, false).applyTo(inputFile);
       
-      inBrowseButton.addSelectionListener(new SelectionListener() {
-    	  @Override
+
+       inputFile=PD.getInputFile();
+       	
+//      PD.getInButton().addSelectionListener(new SelectionListener() {
+/*       inBrowseButton.addSelectionListener(new SelectionListener() {	
+         @Override
     	  public void widgetDefaultSelected(SelectionEvent inEvent) {
     	  }
     	  @Override
@@ -80,10 +88,16 @@ public class LWDGMainLaunchConfigurationTab extends AbstractLaunchConfigurationT
     		  choseFilepath = fileDialog.open();
     		  if (choseFilepath != null) {
     			  inputFile.setText(Path.fromOSString(choseFilepath).makeAbsolute().toOSString());
-    			  updateLaunchConfigurationDialog();
+    			//  updateLaunchConfigurationDialog();
     			  }
     	  	}
-      });   
+      }); 
+*/
+       inputFile.addModifyListener(new ModifyListener(){
+           public void modifyText(ModifyEvent event3) {
+               updateLaunchConfigurationDialog();
+           	   setDirty(true);
+           	}});
 
        //Output file chose dialog      
        Button outBrowseButton = new Button(comp, SWT.PUSH);
@@ -181,8 +195,8 @@ public class LWDGMainLaunchConfigurationTab extends AbstractLaunchConfigurationT
 		
         try {
         text.setText(configuration.getAttribute(LWDGLaunchConfigurationAttributes.SERVICE_URL,"http://localhost:8176"));
-        inputFile.setText(configuration.getAttribute(LWDGLaunchConfigurationAttributes.FILE_TO_CONVERT,"somefile"));
-        outputFile.setText(configuration.getAttribute(LWDGLaunchConfigurationAttributes.CONVERTED_FILE,"somefile"));
+        inputFile.setText(configuration.getAttribute(LWDGLaunchConfigurationAttributes.FILE_TO_CONVERT,""));
+        outputFile.setText(configuration.getAttribute(LWDGLaunchConfigurationAttributes.CONVERTED_FILE,""));
     } catch (CoreException e) {
     	e.printStackTrace();
     	
@@ -205,9 +219,9 @@ public class LWDGMainLaunchConfigurationTab extends AbstractLaunchConfigurationT
 		configuration.setAttribute(
 				LWDGLaunchConfigurationAttributes.SERVICE_URL, "http://localhost:8176");
 		configuration.setAttribute(
-				LWDGLaunchConfigurationAttributes.FILE_TO_CONVERT, "someInfile");
+				LWDGLaunchConfigurationAttributes.FILE_TO_CONVERT, "");
 		configuration.setAttribute(
-				LWDGLaunchConfigurationAttributes.CONVERTED_FILE, "someOutfile");
+				LWDGLaunchConfigurationAttributes.CONVERTED_FILE, "");
 	
 	}
 	

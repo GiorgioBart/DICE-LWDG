@@ -24,7 +24,7 @@ import org.eclipse.ui.PlatformUI;
 public class LWDGHttpclient {
 	
  @SuppressWarnings("resource")
- public static void PostXmi(String restURL,String inputFile,String outputFile) throws ClientProtocolException, IOException {
+public static void PostXmi(String restURL,String inputFile,String outputFile) throws ClientProtocolException, IOException {
 	  
 
 	  HttpClient client = new DefaultHttpClient();
@@ -32,6 +32,7 @@ public class LWDGHttpclient {
 	  
 	  try {
 		File file = new File(inputFile);
+		Boolean bool = file.isFile();
 		FileEntity entity = new FileEntity(file, "text/plain; charset=\"UTF-8\"");
 		post.setEntity(entity);
 		
@@ -54,7 +55,7 @@ public class LWDGHttpclient {
 	  }
 	  
 	  }
-	public static void showDialog(String message,int style) {
+public static void showDialog(String message,int style) {
 		
 		PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
 		    public void run() {
