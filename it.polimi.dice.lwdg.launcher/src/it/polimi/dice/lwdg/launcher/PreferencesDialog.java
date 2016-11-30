@@ -15,7 +15,11 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
-
+/**
+ * This class draw the preferences panel for DICE-LWDG launcher plugin.
+ * @author Giorgio Bartoccioni
+ *
+ */
 public class PreferencesDialog {
 
     private Text URL;
@@ -26,6 +30,10 @@ public class PreferencesDialog {
     private Button inBrowseButton;
     private Text deployText;
 
+    /**
+     * This method effectively draw the panel
+     * @param comp
+     */
     public void drawDialog(Composite comp) {
 
         GridLayoutFactory.swtDefaults().numColumns(2).applyTo(comp);
@@ -38,6 +46,7 @@ public class PreferencesDialog {
         URL = new Text(comp, SWT.BORDER);
         GridDataFactory.fillDefaults().grab(true, false).applyTo(URL);
 
+        
         //Input file chose dialog
         inBrowseButton = new Button(comp, SWT.PUSH);
         inBrowseButton.setText("Select input model file");
@@ -132,7 +141,7 @@ public class PreferencesDialog {
 
 
     }
-
+   
     public Text getDicerURL() {
         return URL;
     }

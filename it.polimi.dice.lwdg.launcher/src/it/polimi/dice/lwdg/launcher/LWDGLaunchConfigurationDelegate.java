@@ -8,7 +8,12 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.model.LaunchConfigurationDelegate;
 
 
-
+/**
+ * This is the core class of the DICE-LWDG Launcher.
+ * Take preferences setting and execute the POST to dicer-service url
+ * @author Giorgio Bartoccioni
+ *
+ */
 
 public class LWDGLaunchConfigurationDelegate extends LaunchConfigurationDelegate{
 
@@ -25,11 +30,7 @@ public class LWDGLaunchConfigurationDelegate extends LaunchConfigurationDelegate
 		//OUT TOSCA
 		String convertedFile = configuration.getAttribute(
 				LWDGLaunchConfigurationAttributes.CONVERTED_FILE, "someOutfile");
-		
-		//Log vital data to console
-		//System.out.println(restURL+' '+fileToConvert+' '+convertedFile);
-        
-   
+  
         try {       	 
 			LWDGHttpclient.PostXmi(restURL,fileToConvert,convertedFile );		
 			} catch (IOException e) {

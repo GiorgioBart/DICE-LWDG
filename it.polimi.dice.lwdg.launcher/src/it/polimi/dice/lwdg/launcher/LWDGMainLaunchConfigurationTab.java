@@ -12,8 +12,11 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
 
-@
-SuppressWarnings("deprecation")
+/**
+ * This is the main configuration tab for the DICE-LWDG Launcher.
+ * @author Giorgio Bartoccioni
+ *
+ */
 public class LWDGMainLaunchConfigurationTab extends AbstractLaunchConfigurationTab {
 
     private Text URL;
@@ -22,6 +25,9 @@ public class LWDGMainLaunchConfigurationTab extends AbstractLaunchConfigurationT
 
     @
     Override
+    /**
+     * This method create the config tab
+     */
     public void createControl(Composite parent) {
 
         Composite comp = new Group(parent, SWT.BORDER);
@@ -56,6 +62,9 @@ public class LWDGMainLaunchConfigurationTab extends AbstractLaunchConfigurationT
 
     }
 
+    /**
+     * This set the name of the config tab
+     */
     @
     Override
     public String getName() {
@@ -63,6 +72,9 @@ public class LWDGMainLaunchConfigurationTab extends AbstractLaunchConfigurationT
         return "DICER-SERVICE launch tab";
     }
 
+    /**
+     * This initialize the configuration tab parameter to some value
+     */
     @
     Override
     public void initializeFrom(ILaunchConfiguration configuration) {
@@ -77,6 +89,11 @@ public class LWDGMainLaunchConfigurationTab extends AbstractLaunchConfigurationT
         }
     }
 
+    /**
+     * @This apply given value to the launch config
+     * {@inheritDoc}
+     * 
+     */
     @
     Override
     public void performApply(ILaunchConfigurationWorkingCopy configuration) {
@@ -89,6 +106,9 @@ public class LWDGMainLaunchConfigurationTab extends AbstractLaunchConfigurationT
             LWDGLaunchConfigurationAttributes.CONVERTED_FILE, outputFile.getText());
     }
 
+    /**
+     * This apply some default value to the launch config
+     */
     @
     Override
     public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {

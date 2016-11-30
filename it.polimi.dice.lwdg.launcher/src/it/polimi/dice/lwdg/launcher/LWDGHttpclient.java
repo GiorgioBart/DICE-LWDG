@@ -15,18 +15,29 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.FileEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
-
+/**
+ * This class give help in http connection for DICE-LWDG Launcher 
+ * @author Giorgio Bartoccioni
+ *
+ */
 @
 SuppressWarnings("deprecation")
 
 public class LWDGHttpclient {
 
-    @
+	/**
+	 * This method send the given input file to the given rest url and write the given output file 
+	 * @param restURL URL of the RESTful service
+	 * @param inputFile Name of the input file 
+	 * @param outputFile Name of the output file
+	 * @throws ClientProtocolException 
+	 * @throws IOException
+	 */
+	@
     SuppressWarnings("resource")
     public static void PostXmi(String restURL, String inputFile, String outputFile) throws ClientProtocolException, IOException {
 
@@ -58,6 +69,14 @@ public class LWDGHttpclient {
         }
 
     }
+	
+	/**
+	 * This method show a message dialog of the given style with the given message
+	 * @param message
+	 * @param style The dialog style as, for example, SWT.ICON_INFORMATION
+	 */
+	
+	
     public static void showDialog(String message, int style) {
 
         PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
@@ -70,19 +89,19 @@ public class LWDGHttpclient {
         });
     }
 
+    /**
+     * This method execute a simple GET at the given URL to check if service is alive 
+     * @param url
+     */
     public static void checkURL(String url) {@
         SuppressWarnings("resource")
         HttpClient client = new DefaultHttpClient();
         HttpGet request = new HttpGet(url);
         try {
             client.execute(request);
-            MessageBox messageBox = new MessageBox(Display.getCurrent().getActiveShell(), SWT.ICON_INFORMATION);
-            messageBox.setMessage("Server is alive");
-            messageBox.open();
+            showDialog("Server is alive", SWT.ICON_INFORMATION);
         } catch (IOException e) {
-            MessageBox messageBox = new MessageBox(Display.getCurrent().getActiveShell(), SWT.ICON_ERROR);
-            messageBox.setMessage("Connection Refused");
-            messageBox.open();
+        	showDialog("Connection Refused", SWT.ICON_INFORMATION);
         }
     }
 
