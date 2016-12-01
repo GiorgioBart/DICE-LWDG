@@ -33,9 +33,8 @@ public class LWDGMainLaunchConfigurationTab extends AbstractLaunchConfigurationT
         Composite comp = new Group(parent, SWT.BORDER);
         setControl(comp);
 
-        PreferencesDialog PD = new PreferencesDialog();
+        LWDGgui PD = new LWDGgui();
         PD.drawDialog(comp);
-
 
         ModifyListener PDlistener = new ModifyListener() {
             /** {@inheritDoc} */

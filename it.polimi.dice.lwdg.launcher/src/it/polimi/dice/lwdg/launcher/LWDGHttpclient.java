@@ -15,9 +15,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.FileEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.MessageBox;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.PlatformUI;
+
 
 /**
  * This class give help in http connection for DICE-LWDG Launcher 
@@ -62,46 +60,27 @@ public class LWDGHttpclient {
                     fos.write(inByte);
                 is.close();
                 fos.close();
-                showDialog("Conversion completed.\n Output model is:" + outputFile, SWT.ICON_INFORMATION);
+            	LWDGgui.showDialog("Conversion completed.\n Output model is:" + outputFile, SWT.ICON_INFORMATION);                
             }
         } catch (ConnectException e) {
-            showDialog("Connection refused.\n Check if server is running", SWT.ICON_ERROR);
+        	LWDGgui.showDialog("Connection refused.\n Check if server is running", SWT.ICON_ERROR);
         }
 
     }
 	
-	/**
-	 * This method show a message dialog of the given style with the given message
-	 * @param message
-	 * @param style The dialog style as, for example, SWT.ICON_INFORMATION
-	 */
-	
-	
-    public static void showDialog(String message, int style) {
-
-        PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
-            public void run() {
-                Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-                MessageBox messageBox = new MessageBox(shell, style);
-                messageBox.setMessage(message);
-                messageBox.open();
-            }
-        });
-    }
-
     /**
      * This method execute a simple GET at the given URL to check if service is alive 
      * @param url
      */
-    public static void checkURL(String url) {@
+    public static Boolean checkURL(String url) {@
         SuppressWarnings("resource")
         HttpClient client = new DefaultHttpClient();
         HttpGet request = new HttpGet(url);
         try {
             client.execute(request);
-            showDialog("Server is alive", SWT.ICON_INFORMATION);
+            return true;
         } catch (IOException e) {
-        	showDialog("Connection Refused", SWT.ICON_INFORMATION);
+        	return false;
         }
     }
 
