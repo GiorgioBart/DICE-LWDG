@@ -109,14 +109,7 @@ public class LWDGgui {
             	showDialog("Server is alive", SWT.ICON_INFORMATION);
             	}catch (Exception e){
             		showDialog(e.getMessage(), SWT.ICON_ERROR);
-            	}
-            	
-/*                 if (alive){
-                  	showDialog("Server is alive", SWT.ICON_INFORMATION);
-                 } else {
-                   	showDialog("Connection Refused", SWT.ICON_ERROR);
-                 }                     
-*/                
+            	}               
             }
         });
 
@@ -188,6 +181,7 @@ public class LWDGgui {
         return outputFile;
     }
     
+    @SuppressWarnings("unused")
     private static boolean isEmpty(String input)
     {
         if(input == null)

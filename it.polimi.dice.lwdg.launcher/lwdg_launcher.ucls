@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.1.12" icons="true" automaticImage="PNG" always-add-relationships="true" generalizations="true" 
-  realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
+<class-diagram version="1.1.13" icons="true" automaticImage="PNG" always-add-relationships="true" generalizations="true" 
+  realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="MANHATTAN">  
   <interface id="1" language="java" name="it.polimi.dice.lwdg.launcher.LWDGLaunchConfigurationAttributes" 
     project="it.polimi.dice.lwdg.launcher" 
     file="/it.polimi.dice.lwdg.launcher/src/it/polimi/dice/lwdg/launcher/LWDGLaunchConfigurationAttributes.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="891" y="365"/>    
+    <position height="-1" width="-1" x="702" y="179"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -15,7 +15,7 @@
   <class id="2" language="java" name="it.polimi.dice.lwdg.launcher.Activator" project="it.polimi.dice.lwdg.launcher" 
     file="/it.polimi.dice.lwdg.launcher/src/it/polimi/dice/lwdg/launcher/Activator.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="77" y="777"/>    
+    <position height="-1" width="-1" x="165" y="629"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -26,7 +26,7 @@
     project="it.polimi.dice.lwdg.launcher" 
     file="/it.polimi.dice.lwdg.launcher/src/it/polimi/dice/lwdg/launcher/LWDGHttpclient.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1324" y="696"/>    
+    <position height="-1" width="-1" x="794" y="382"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -37,7 +37,7 @@
     project="it.polimi.dice.lwdg.launcher" 
     file="/it.polimi.dice.lwdg.launcher/src/it/polimi/dice/lwdg/launcher/LWDGMainLaunchConfigurationTab.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="438" y="456"/>    
+    <position height="-1" width="-1" x="496" y="569"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
     project="it.polimi.dice.lwdg.launcher" 
     file="/it.polimi.dice.lwdg.launcher/src/it/polimi/dice/lwdg/launcher/LWDGLaunchConfigurationDelegate.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1325" y="456"/>    
+    <position height="-1" width="-1" x="1056" y="179"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -59,7 +59,7 @@
     project="it.polimi.dice.lwdg.launcher" 
     file="/it.polimi.dice.lwdg.launcher/src/it/polimi/dice/lwdg/launcher/LWDGLaunchConfigurationTabGroup.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="49" y="456"/>    
+    <position height="-1" width="-1" x="236" y="170"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -70,7 +70,7 @@
     project="it.polimi.dice.lwdg.launcher" 
     file="/home/giorgio/Scrivania/eclipse/plugins/org.eclipse.debug.core_3.10.100.v20160419-1720.jar" binary="true" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1325" y="248"/>    
+    <position height="-1" width="-1" x="1056" y="53"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
@@ -81,7 +81,7 @@
     project="it.polimi.dice.lwdg.launcher" 
     file="/home/giorgio/Scrivania/eclipse/plugins/org.eclipse.debug.ui_3.11.201.v20160825-1412.jar" binary="true" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="433" y="248"/>    
+    <position height="-1" width="-1" x="496" y="56"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
@@ -91,7 +91,7 @@
   <class id="9" language="java" name="org.eclipse.ui.plugin.AbstractUIPlugin" project="it.polimi.dice.lwdg.loadDemo" 
     file="/home/giorgio/Scrivania/eclipse/plugins/org.eclipse.ui.workbench_3.108.1.v20160819-2118.jar" binary="true" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="77" y="582"/>    
+    <position height="-1" width="-1" x="165" y="479"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
@@ -102,76 +102,83 @@
     project="it.polimi.dice.lwdg.launcher" 
     file="/home/giorgio/Scrivania/eclipse/plugins/org.eclipse.debug.ui_3.11.201.v20160825-1412.jar" binary="true" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="49" y="248"/>    
+    <position height="-1" width="-1" x="236" y="54"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="it.polimi.dice.lwdg.launcher.PreferencesDialog" 
-    project="it.polimi.dice.lwdg.launcher" 
-    file="/it.polimi.dice.lwdg.launcher/src/it/polimi/dice/lwdg/launcher/PreferencesDialog.java" binary="false" 
+  <class id="11" language="java" name="it.polimi.dice.lwdg.launcher.LWDGgui" project="it.polimi.dice.lwdg.launcher" 
+    file="/it.polimi.dice.lwdg.launcher/src/it/polimi/dice/lwdg/launcher/LWDGgui.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="917" y="647"/>    
+    <position height="-1" width="-1" x="1056" y="569"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="12">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <dependency id="13">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="4"/>  
+  <dependency id="12">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="1"/>  
   </dependency>  
-  <generalization id="14">    
+  <generalization id="13">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="10"/>  
   </generalization>  
-  <generalization id="15">    
+  <generalization id="14">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="9"/>  
   </generalization>  
-  <association id="16">    
+  <dependency id="15">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="16">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="17">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="18">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="19">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <generalization id="20">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <dependency id="21">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <generalization id="22">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <association id="23">    
     <end type="SOURCE" refId="2" navigable="false" variant="ASSOCIATION">      
-      <attribute id="17" name="plugin">        
-        <position height="0" width="0" x="538" y="509"/>      
+      <attribute id="24" name="plugin">        
+        <position height="0" width="0" x="-1" y="1304"/>      
       </attribute>      
-      <multiplicity id="18" minimum="0" maximum="1">        
-        <position height="0" width="0" x="538" y="509"/>      
+      <multiplicity id="25" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1" y="1304"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true" variant="ASSOCIATION"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="19">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="11"/>  
-  </dependency>  
-  <dependency id="20">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <dependency id="21">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <dependency id="22">    
+  <dependency id="26">    
     <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
-  <dependency id="23">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <generalization id="24">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
