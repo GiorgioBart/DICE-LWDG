@@ -72,17 +72,17 @@ public class LWDGHttpclient {
      * This method execute a simple GET at the given URL to check if service is alive 
      * @param url
      */
-    public static Boolean checkURL(String url) {@
-        SuppressWarnings("resource")
-        HttpClient client = new DefaultHttpClient();
-        HttpGet request = new HttpGet(url);
-        try {
+//	https://hc.apache.org/httpclient-3.x/tutorial.html
+    public static Boolean checkURL(String url) throws Exception {
+        if (url != null && !url.isEmpty()) {
+            HttpClient client = new DefaultHttpClient();
+            HttpGet request = new HttpGet(url);
             client.execute(request);
             return true;
-        } catch (IOException e) {
-        	return false;
-        }
+        } else {
+            throw new Exception("Repo not valid");
+        }    
     }
-
+    
 }
 

@@ -23,6 +23,13 @@ public class LWDGMainLaunchConfigurationTab extends AbstractLaunchConfigurationT
     private Text inputFile;
     private Text outputFile;
 
+    private static boolean isEmpty(String input)
+    {
+        if(input == null)
+            return true;
+        else
+            return input.trim().isEmpty();
+    }    
     @
     Override
     /**
@@ -39,8 +46,18 @@ public class LWDGMainLaunchConfigurationTab extends AbstractLaunchConfigurationT
         ModifyListener PDlistener = new ModifyListener() {
             /** {@inheritDoc} */
             public void modifyText(ModifyEvent e) {
-                updateLaunchConfigurationDialog();
-                setDirty(true);
+            	
+            	
+            	String urlString = URL.getText();
+                String inputString = inputFile.getText();
+                String outputString = outputFile.getText();
+
+                if (!isEmpty(urlString) && !isEmpty(inputString) && !isEmpty(outputString)) {
+                	 updateLaunchConfigurationDialog();
+                     setDirty(true);
+                }
+            	
+               
             }
         };
         URL = PD.getDicerURL();
@@ -119,6 +136,7 @@ public class LWDGMainLaunchConfigurationTab extends AbstractLaunchConfigurationT
             LWDGLaunchConfigurationAttributes.CONVERTED_FILE, "");
 
     }
+    
 
 
 }

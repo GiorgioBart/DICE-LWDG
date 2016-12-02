@@ -103,14 +103,20 @@ public class LWDGgui {
 
         checkButton.addListener(SWT.Selection, new Listener() {
             public void handleEvent(Event event) {
+                	
+            	try {
+            	LWDGHttpclient.checkURL(URL.getText());
+            	showDialog("Server is alive", SWT.ICON_INFORMATION);
+            	}catch (Exception e){
+            		showDialog(e.getMessage(), SWT.ICON_ERROR);
+            	}
             	
-                Boolean alive=LWDGHttpclient.checkURL(URL.getText());
-                if (alive){
-                	showDialog("Server is alive", SWT.ICON_INFORMATION);
-                } else {
-                	showDialog("Connection Refused", SWT.ICON_ERROR);
-                }
-
+/*                 if (alive){
+                  	showDialog("Server is alive", SWT.ICON_INFORMATION);
+                 } else {
+                   	showDialog("Connection Refused", SWT.ICON_ERROR);
+                 }                     
+*/                
             }
         });
 
@@ -181,4 +187,12 @@ public class LWDGgui {
     public Text getOutputFile() {
         return outputFile;
     }
+    
+    private static boolean isEmpty(String input)
+    {
+        if(input == null)
+            return true;
+        else
+            return input.trim().isEmpty();
+    }    
 }
