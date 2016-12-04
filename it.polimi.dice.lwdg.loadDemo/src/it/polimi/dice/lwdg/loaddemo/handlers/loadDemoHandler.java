@@ -16,31 +16,19 @@ import org.eclipse.ui.dialogs.IOverwriteQuery;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.wizards.datatransfer.ImportOperation;
 import org.eclipse.ui.wizards.datatransfer.ZipFileStructureProvider;
-
+import it.polimi.dice.lwdg.loaddemo.LoadDemoHttp;
 import it.polimi.dice.lwdg.loaddemo.getRepoPreference;
-
 import org.eclipse.jface.dialogs.MessageDialog;
 
-
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.zip.ZipFile;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.commons.io.IOUtils;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter.Loadable;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.BasicExtendedMetaData;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
@@ -56,8 +44,6 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
  *
  */
 
-@
-SuppressWarnings("deprecation")
 public class loadDemoHandler extends AbstractHandler {
 
     /**
@@ -77,52 +63,7 @@ public class loadDemoHandler extends AbstractHandler {
         }
     }
 
-    /**
-     * Download content from given URL (repo) 
-     * @param repo  Where to download Models and Metamodels
-     * @return This method return an InputStream 
-     * @throws Exception 
-     */
-    private InputStream getGithub(String repo) throws Exception {
-        if (repo != null && !repo.isEmpty()) {@
-            SuppressWarnings({
-                "resource"
-            })
-            HttpClient client = new DefaultHttpClient();
-            HttpGet request = new HttpGet(repo);
-            HttpResponse response = client.execute(request);
-            HttpEntity outentity = response.getEntity();
-            InputStream is = outentity.getContent();
-            return is;
-        } else {
-            throw new Exception("Repo not valid");
-        }
-
-    }
-
-    /**
-     * Write a temp file from InputStream given as parameter
-     * @param is The InputStrteam to write to temp file
-     * @return absolute path of the temp file
-     */
-    private String writeTemp(InputStream is) {
-
-        try {
-            File targetFile = File.createTempFile("models", ".tmp");
-            OutputStream outStream = new FileOutputStream(targetFile);
-            byte[] buffer = new byte[8 * 1024];
-            int bytesRead;
-            while ((bytesRead = is.read(buffer)) != -1) {
-                outStream.write(buffer, 0, bytesRead);
-            }
-            IOUtils.closeQuietly(is);
-            IOUtils.closeQuietly(outStream);
-            return targetFile.getAbsolutePath();
-        } catch (IOException e) {
-            return null;
-        }
-    }
-
+ 
     /**
      * Registers given ecore file in EcoreResourceFactory
      * @param workspaceEcorePath Path of the ecore file relative to the workspace
@@ -190,6 +131,7 @@ public class loadDemoHandler extends AbstractHandler {
     @
     Override
     public Object execute(ExecutionEvent event) throws ExecutionException {
+    	
         IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 
         getRepoPreference dialog = new getRepoPreference(window.getShell());
@@ -207,13 +149,10 @@ public class loadDemoHandler extends AbstractHandler {
             String dicermetamodel = dialog.getMetamodels();
 
             try {
-                InputStream ismodel = getGithub(dicermodel);
+            	
+                String models = LoadDemoHttp.getFIle(dicermodel);
 
-                String models = writeTemp(ismodel);
-
-                InputStream ismetamodel = getGithub(dicermetamodel);
-
-                String metamodels = writeTemp(ismetamodel);
+                String metamodels = LoadDemoHttp.getFIle(dicermetamodel);
 
                 createProject(dicerProject);
 
