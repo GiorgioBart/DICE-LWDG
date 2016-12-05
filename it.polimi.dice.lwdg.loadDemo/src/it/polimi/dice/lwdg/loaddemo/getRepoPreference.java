@@ -31,11 +31,20 @@ public class getRepoPreference extends Dialog {
         super.configureShell(newShell);
         newShell.setText("Please insert URL");
     }
-
+    
+    /**
+     * Disable "cancel" button
+     */
     protected void createButtonsForButtonBar(Composite parent) {
         createButton(parent, IDialogConstants.OK_ID, "Ok", true);
     }
-
+    
+    /**
+     * Disable the X button to close the dialog 
+     */
+    protected boolean canHandleShellCloseEvent() {
+	    return false;
+	}
     @
     Override
     protected Control createDialogArea(Composite parent) {

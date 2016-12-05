@@ -46,7 +46,7 @@ public class LoadDemoHttp {
 	    	    response.close();
 	    	    return out;
 			} catch (ClientProtocolException e) {
-				throw new Exception("ClientProtocolException");
+				throw new Exception("ClientProtocolException: Please check URL syntax");
 	        } catch (UnsupportedOperationException e) {
 	        	throw new Exception("UnsupportedOperationException");
 	        } catch (IOException e) {
@@ -66,7 +66,7 @@ public class LoadDemoHttp {
 	private static String writeTemp(InputStream is) {
 
         try {
-            File targetFile = File.createTempFile("models", ".tmp");
+            File targetFile = File.createTempFile("dice_lwdg_file", ".tmp");
             OutputStream outStream = new FileOutputStream(targetFile);
             byte[] buffer = new byte[8 * 1024];
             int bytesRead;
