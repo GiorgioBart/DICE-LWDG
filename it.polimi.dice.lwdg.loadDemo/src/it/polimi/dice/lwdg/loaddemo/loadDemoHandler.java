@@ -1,5 +1,6 @@
-package it.polimi.dice.lwdg.loaddemo.handlers;
+package it.polimi.dice.lwdg.loaddemo;
 
+import org.apache.http.client.ClientProtocolException;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -16,12 +17,11 @@ import org.eclipse.ui.dialogs.IOverwriteQuery;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.wizards.datatransfer.ImportOperation;
 import org.eclipse.ui.wizards.datatransfer.ZipFileStructureProvider;
-import it.polimi.dice.lwdg.loaddemo.LoadDemoHttp;
-import it.polimi.dice.lwdg.loaddemo.getRepoPreference;
 import org.eclipse.jface.dialogs.MessageDialog;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -99,8 +99,9 @@ public class loadDemoHandler extends AbstractHandler {
      * @param myfilepath Absolute path of the Zip file to import 
      * @param myproject Project name
      * @return Boolean
+     * @throws Exception 
      */
-    private Boolean importZip(String myfilepath, String myproject) {
+    private Boolean importZip(String myfilepath, String myproject) throws Exception {
 
         IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
         IProject project = root.getProject(myproject);
@@ -118,11 +119,23 @@ public class loadDemoHandler extends AbstractHandler {
             ImportOperation op = new ImportOperation(project.getFullPath(), structureProvider.getRoot(), structureProvider, overwriteQuery);
             op.run(new NullProgressMonitor());
             return true;
-        } catch (CoreException | IOException | InvocationTargetException | InterruptedException e) {
-            return false;
+        	} catch (ZipException e) {
+        	    e.printStackTrace();
+        	    throw new Exception("loadDemoHandler: ZipException.\n"+myfilepath+"\nIs zip valid?");
+        	} catch (CoreException e) {
+        	    e.printStackTrace();
+        	    throw new Exception("loadDemoHandler: CoreException");
+        	} catch (IOException e) {
+        	    e.printStackTrace();
+        	    throw new Exception("loadDemoHandler: IOException.\nIs zip valid ?");
+        	} catch (InvocationTargetException e) {
+        	    e.printStackTrace();
+        	    throw new Exception("loadDemoHandler: InvocationTargetException"); 
+        	} catch (InterruptedException e) {
+        	    e.printStackTrace();
+        	    throw new Exception("loadDemoHandler: InterruptedException"); 
+        	}
         }
-
-    }
 
     /**
      * {@inheritDoc}

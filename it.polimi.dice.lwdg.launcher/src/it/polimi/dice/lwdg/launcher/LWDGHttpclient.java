@@ -76,7 +76,7 @@ public class LWDGHttpclient {
      * This method execute a simple GET at the given URL to check if service is
      * alive
      * 
-     * @param url
+     * @param url to check
      */
     public static Boolean checkURL(String url) throws Exception {
 	if (url != null && !url.isEmpty()) {

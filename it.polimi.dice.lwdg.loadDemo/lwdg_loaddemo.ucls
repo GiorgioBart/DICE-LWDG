@@ -33,9 +33,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="it.polimi.dice.lwdg.loaddemo.handlers.loadDemoHandler" 
+  <class id="4" language="java" name="it.polimi.dice.lwdg.loaddemo.loadDemoHandler" 
     project="it.polimi.dice.lwdg.loadDemo" 
-    file="/it.polimi.dice.lwdg.loadDemo/src/it/polimi/dice/lwdg/loaddemo/handlers/loadDemoHandler.java" binary="false" 
+    file="/it.polimi.dice.lwdg.loadDemo/src/it/polimi/dice/lwdg/loaddemo/loadDemoHandler.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="149" y="221"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
@@ -68,22 +68,22 @@
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <dependency id="8">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <association id="9">    
+  <association id="8">    
     <end type="SOURCE" refId="1" navigable="false" variant="ASSOCIATION">      
-      <attribute id="10" name="plugin">        
+      <attribute id="9" name="plugin">        
         <position height="0" width="0" x="390" y="10"/>      
       </attribute>      
-      <multiplicity id="11" minimum="0" maximum="1">        
+      <multiplicity id="10" minimum="0" maximum="1">        
         <position height="0" width="0" x="390" y="10"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true" variant="ASSOCIATION"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <dependency id="11">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
   <dependency id="12">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="3"/>  

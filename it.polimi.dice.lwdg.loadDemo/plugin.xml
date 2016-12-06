@@ -31,7 +31,7 @@
          point="org.eclipse.ui.handlers">
       <handler
             commandId="it.polimi.dice.lwdg.loadDemo.commands.loaddemo"
-            class="it.polimi.dice.lwdg.loaddemo.handlers.loadDemoHandler">
+            class="it.polimi.dice.lwdg.loaddemo.loadDemoHandler">
       </handler>
    </extension>
 </plugin>

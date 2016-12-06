@@ -11,7 +11,10 @@ import org.eclipse.debug.ui.ILaunchConfigurationTab;
  */
 public class LWDGLaunchConfigurationTabGroup extends AbstractLaunchConfigurationTabGroup{
 
-	@Override
+	/**
+	 * Set of configuration tab groups
+	 */
+    	@Override
 	public void createTabs(ILaunchConfigurationDialog dialog, String mode) {
 		
 		setTabs(new ILaunchConfigurationTab[] {new LWDGMainLaunchConfigurationTab(), new CommonTab() });

@@ -33,28 +33,35 @@ public class LoadDemoHttp {
 	 * @throws Exception
 	 */
 	public static String getFIle(String repo) throws Exception{
+	    	
 		if (repo != null && !repo.isEmpty()) {
 	
-			CloseableHttpClient httpclient = HttpClients.createDefault();
-			HttpGet httpget = new HttpGet(repo);
-			CloseableHttpResponse response;
-			try {
-				response = httpclient.execute(httpget);
+		    CloseableHttpClient httpclient = HttpClients.createDefault();
+		    HttpGet httpget = new HttpGet(repo);
+		    CloseableHttpResponse response;
+		    try {
+			response = httpclient.execute(httpget);
+			int responseCode = response.getStatusLine().getStatusCode();
+			if (responseCode == 200) {
 				HttpEntity entity = response.getEntity();
-	        	InputStream is = entity.getContent();
-	        	String out=writeTemp(is);
-	    	    response.close();
-	    	    return out;
+		        	InputStream is = entity.getContent();
+		        	String out=writeTemp(is);
+		    	    	response.close();
+		    	    	return out;
+			} else {
+			    throw new Exception("LoadDemoHttp: Repository not valid.\n"+repo+"\n Response Code:"
+					+ responseCode);
+			}
 			} catch (ClientProtocolException e) {
-				throw new Exception("ClientProtocolException: Please check URL syntax");
-	        } catch (UnsupportedOperationException e) {
-	        	throw new Exception("UnsupportedOperationException");
-	        } catch (IOException e) {
-	        	throw new Exception("IOException");
-	        }   
-
+				throw new Exception("HttpClients: ClientProtocolException. Please check URL syntax");
+			} catch (UnsupportedOperationException e) {
+			    	throw new Exception("HttpClients: UnsupportedOperationException.");
+			} catch (IOException e) {
+			    e.printStackTrace();
+			    	throw new Exception("HttpClients: IOException. Please check http or https");
+			}   
 		}else {
-			throw new Exception("Repo not valid");
+			throw new Exception("LoadDemoHttp: Empty Repository");
 		}
 	}
 	

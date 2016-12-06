@@ -18,6 +18,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
+
 /**
  * This class draw the preferences panel for DICE-LWDG launcher plugin.
  * @author Giorgio Bartoccioni
@@ -168,27 +169,36 @@ public class LWDGgui {
         });
     }
     
+    /**
+     * Return URL Text element
+     * @return
+     */
     public Text getDicerURL() {
         return URL;
     }
 
+    /**
+     * Return inBrowseButton element
+     * @return
+     */
     public Button getInButton() {
         return inBrowseButton;
     }
 
+    /**
+     * Return inputFile Text element
+     * @return
+     */
     public Text getInputFile() {
         return inputFile;
     }
+
+    /**
+     * Return outputFile Text element
+     * @return
+     */
     public Text getOutputFile() {
         return outputFile;
     }
-    
-    @SuppressWarnings("unused")
-    private static boolean isEmpty(String input)
-    {
-        if(input == null)
-            return true;
-        else
-            return input.trim().isEmpty();
-    }    
+  
 }
