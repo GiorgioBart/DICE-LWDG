@@ -21,15 +21,8 @@ public class LWDGMainLaunchConfigurationTab extends AbstractLaunchConfigurationT
 
     private Text URL;
     private Text inputFile;
-    private Text outputFile;
-
-    private static boolean isEmpty(String input)
-    {
-        if(input == null)
-            return true;
-        else
-            return input.trim().isEmpty();
-    }    
+    private Text outputFile;  
+    
     @
     Override
     /**
@@ -45,34 +38,24 @@ public class LWDGMainLaunchConfigurationTab extends AbstractLaunchConfigurationT
 
         ModifyListener PDlistener = new ModifyListener() {
             /** {@inheritDoc} */
-            public void modifyText(ModifyEvent e) {
-            	
-            	
-            	String urlString = URL.getText();
-                String inputString = inputFile.getText();
-                String outputString = outputFile.getText();
-
-                if (!isEmpty(urlString) && !isEmpty(inputString) && !isEmpty(outputString)) {
-                	 updateLaunchConfigurationDialog();
-                     setDirty(true);
-                }
-            	
-               
+            public void modifyText(ModifyEvent e) {        
+            	updateLaunchConfigurationDialog();
             }
         };
+        
         URL = PD.getDicerURL();
-
-        URL.addModifyListener(PDlistener);
 
         inputFile = PD.getInputFile();
 
-        inputFile.setEditable(false);
-
-        inputFile.addModifyListener(PDlistener);
-
         outputFile = PD.getOutputFile();
 
+        inputFile.setEditable(false);
+        
         outputFile.setEditable(false);
+
+        URL.addModifyListener(PDlistener);
+
+        inputFile.addModifyListener(PDlistener);
 
         outputFile.addModifyListener(PDlistener);
 
@@ -136,7 +119,5 @@ public class LWDGMainLaunchConfigurationTab extends AbstractLaunchConfigurationT
             LWDGLaunchConfigurationAttributes.CONVERTED_FILE, "");
 
     }
-    
-
 
 }

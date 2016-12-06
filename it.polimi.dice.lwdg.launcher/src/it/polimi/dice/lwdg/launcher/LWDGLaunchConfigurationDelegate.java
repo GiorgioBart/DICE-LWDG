@@ -32,7 +32,15 @@ public class LWDGLaunchConfigurationDelegate extends LaunchConfigurationDelegate
 		"someOutfile");
 
 	try {
-	    LWDGHttpclient.PostXmi(restURL, fileToConvert, convertedFile);
+		if (restURL.isEmpty()){
+			LWDGgui.showDialog("Launcher: URL is null or Empty", SWT.ICON_ERROR);
+		} else if (fileToConvert.isEmpty()){
+			LWDGgui.showDialog("Launcher: Input file is null or Empty", SWT.ICON_ERROR);
+		} else if (convertedFile.isEmpty()){
+			LWDGgui.showDialog("Launcher: Output file is null or Empty", SWT.ICON_ERROR);
+		} else {
+			LWDGHttpclient.PostXmi(restURL, fileToConvert, convertedFile);
+		}
 	} catch (Exception e) {
 	    LWDGgui.showDialog(e.getMessage(), SWT.ICON_INFORMATION);
 	}

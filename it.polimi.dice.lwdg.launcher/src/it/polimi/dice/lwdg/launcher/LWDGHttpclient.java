@@ -56,14 +56,14 @@ public class LWDGHttpclient {
 			SWT.ICON_INFORMATION);
 	    } else {
 		post.releaseConnection();
-		LWDGgui.showDialog("Error!\nResponse Code: " + responseCode, SWT.ICON_ERROR);
+		LWDGgui.showDialog("LWDGHttpclient: Error!\nResponse Code: " + responseCode, SWT.ICON_ERROR);
 	    }
 
 	} catch (HttpException e) {
-	    LWDGgui.showDialog("Fatal protocol violation: " + e.getMessage(), SWT.ICON_ERROR);
+	    LWDGgui.showDialog("LWDGHttpclient: Fatal protocol violation: " + e.getMessage(), SWT.ICON_ERROR);
 	    e.printStackTrace();
 	} catch (IOException e) {
-	    LWDGgui.showDialog("Fatal transport error: " + e.getMessage(), SWT.ICON_ERROR);
+	    LWDGgui.showDialog("LWDGHttpclient: Fatal transport error: " + e.getMessage(), SWT.ICON_ERROR);
 	    e.printStackTrace();
 	} finally {
 	    // Release the connection.

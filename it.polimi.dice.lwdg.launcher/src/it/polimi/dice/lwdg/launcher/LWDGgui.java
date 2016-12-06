@@ -48,7 +48,6 @@ public class LWDGgui {
 
         URL = new Text(comp, SWT.BORDER);
         GridDataFactory.fillDefaults().grab(true, false).applyTo(URL);
-
         
         //Input file chose dialog
         inBrowseButton = new Button(comp, SWT.PUSH);
@@ -113,8 +112,9 @@ public class LWDGgui {
             }
         });
 
+        
         new Label(comp, SWT.NONE); //DUMMY
-        ///////////////////   FOR DEPLOY-SERVICE   /////////////////////////////
+ /*       ///////////////////   FOR DEPLOY-SERVICE   /////////////////////////////
 
         Button checkBox = new Button(comp, SWT.CHECK);
         checkBox.setText("Send TOSCA to Deploy-service ?");
@@ -125,9 +125,11 @@ public class LWDGgui {
         deployLabel.setText("deploy-service host:ip");
         GridDataFactory.swtDefaults().applyTo(deployLabel);
         deployLabel.setEnabled(false);
+        
         deployText = new Text(comp, SWT.BORDER);
         GridDataFactory.fillDefaults().grab(true, false).applyTo(deployText);
         deployText.setEnabled(false);
+        
         checkBox.addSelectionListener(new SelectionAdapter() {
 
             @
@@ -143,7 +145,7 @@ public class LWDGgui {
                 }
             }
         });
-        //////////////////////////////////////////////////////////////////////// 
+*/        //////////////////////////////////////////////////////////////////////// 
 
 
 
