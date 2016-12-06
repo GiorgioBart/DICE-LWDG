@@ -54,12 +54,18 @@ public class loadDemoHandler extends AbstractHandler {
         IProgressMonitor progressMonitor = new NullProgressMonitor();
         IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
         IProject project = root.getProject(projectName);
-        try {
-            project.create(progressMonitor);
-            return true;
-        } catch (CoreException e) {
-            return false;
+        if(!project.exists()){
+            try {
+                project.exists();
+                project.create(progressMonitor);
+                return true;
+            } catch (CoreException e) {
+            	return false;
+            }
+        } else{
+            return false;  
         }
+        
     }
 
  
@@ -166,15 +172,20 @@ public class loadDemoHandler extends AbstractHandler {
 
                 String metamodels = LoadDemoHttp.getFIle(dicermetamodel);
 
-                createProject(dicerProject);
+                if(createProject(dicerProject)){
+                    importZip(models, dicerProject);
 
-                importZip(models, dicerProject);
+                    importZip(metamodels, dicerProject);
 
-                importZip(metamodels, dicerProject);
+                    registerEcore(dicerEcore);
 
-                registerEcore(dicerEcore);
+                    MessageDialog.openInformation(window.getShell(), "DICE-LWDG", "Ready to go!");                    
+                }else {
+                    MessageDialog.openInformation(window.getShell(), "DICE-LWDG", "A project with name Dicer_demo_project already exists");
+                }
+                  
+                
 
-                MessageDialog.openInformation(window.getShell(), "DICE-LWDG", "Ready to go!");
             } catch (Exception e) {
 
                 String message = e.getMessage() != null ? e.getMessage() : "Ops! Generic error";
