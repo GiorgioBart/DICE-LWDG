@@ -1,6 +1,5 @@
 package it.polimi.dice.lwdg.loaddemo;
 
-import org.apache.http.client.ClientProtocolException;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -166,22 +165,25 @@ public class loadDemoHandler extends AbstractHandler {
             String dicermodel = dialog.getModels();
             String dicermetamodel = dialog.getMetamodels();
 
-            try {
-            	
-                String models = LoadDemoHttp.getFIle(dicermodel);
-
-                String metamodels = LoadDemoHttp.getFIle(dicermetamodel);
-
+            try {          	
                 if(createProject(dicerProject)){
+                    String models = LoadDemoHttp.getFIle(dicermodel);
+
+                    String metamodels = LoadDemoHttp.getFIle(dicermetamodel);
+                    
                     importZip(models, dicerProject);
 
                     importZip(metamodels, dicerProject);
 
                     registerEcore(dicerEcore);
 
-                    MessageDialog.openInformation(window.getShell(), "DICE-LWDG", "Ready to go!");                    
+                    MessageDialog.openInformation(window.getShell(),
+                	    "DICE-LWDG",
+                	    "Ready to go!");                    
                 }else {
-                    MessageDialog.openInformation(window.getShell(), "DICE-LWDG", "A project with name Dicer_demo_project already exists");
+                    MessageDialog.openInformation(window.getShell(),
+                	    "DICE-LWDG",
+                	    "A project with name Dicer_demo_project already exists");
                 }
                   
                 
